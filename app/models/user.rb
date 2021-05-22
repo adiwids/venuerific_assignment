@@ -32,6 +32,9 @@ class User < ApplicationRecord
 
   enum role: ROLES
 
+  has_many :articles, dependent: :destroy, inverse_of: :author
+  has_many :published_articles, class_name: 'Article', -> { published }
+
   before_validation :ensure_role, on: :create
 
   private

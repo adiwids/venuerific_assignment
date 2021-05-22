@@ -83,6 +83,8 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     ffi (1.15.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.10)
@@ -202,6 +204,7 @@ DEPENDENCIES
   byebug
   devise (~> 4.8)
   dotenv-rails (~> 2.7)
+  friendly_id (~> 5.4)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
