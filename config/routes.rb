@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, skip: %i[confirmation unlock]
+  root to: 'blog/home#index'
+  devise_scope :user do
+    scope module: 'admin' do
+      get '/admin', to: 'dashboard#index', as: 'admin_root'
+    end
+  end
 end
