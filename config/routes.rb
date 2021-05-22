@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users, skip: %i[confirmation unlock]
   root to: 'blog/home#index'
+  resources :articles, only: %i[index show],
+                       controller: 'blog/articles',
+                       param: 'slug'
   devise_scope :user do
-    scope module: 'admin' do
-      get '/admin', to: 'dashboard#index', as: 'admin_root'
+    namespace :admin do
+      root to: 'dashboard#index'
+      resources :articles, param: 'slug'
     end
   end
 end
