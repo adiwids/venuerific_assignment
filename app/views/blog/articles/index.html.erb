@@ -1,2 +1,13 @@
-<h1>Blog::Articles#index</h1>
-<p>Find me in app/views/blog/articles/index.html.erb</p>
+<div class="container">
+  <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <%= render partial: 'preview' %>
+        <div class="clearfix">
+          <%= link_to(articles_path, class: 'btn btn-primary float-right') do %>
+            Older Posts &raquo;
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+<hr />

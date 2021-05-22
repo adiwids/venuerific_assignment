@@ -1,4 +1,6 @@
 /*
+ *= require bootstrap/scss/bootstrap
+ *= require startbootstrap-sb-admin/src/scss/styles
  *= require_tree .
+ *= require_self
  */
-@import 'startbootstrap-sb-admin/dist/css/styles';
