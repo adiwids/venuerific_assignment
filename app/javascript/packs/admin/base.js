@@ -7,8 +7,8 @@ Turbolinks.start()
 require("trix")
 require("@rails/actiontext")
 
-require("@popperjs/core/dist/cjs/popper")
 require("jquery/src/jquery")
+require("popper.js/dist/popper")
 require("bootstrap/dist/js/bootstrap")
 
 import "@fortawesome/fontawesome-free/js/all"
