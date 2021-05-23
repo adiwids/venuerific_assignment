@@ -22,4 +22,5 @@ class Article < ApplicationRecord
 
   default_scope { eager_load(:author) }
   scope :published, -> { where(published: true) }
+  scope :recent, ->{ order(created_at: :desc) }
 end

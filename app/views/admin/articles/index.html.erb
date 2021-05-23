@@ -1,52 +1,50 @@
-<h1 class="mt-4">Tables</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-    <li class="breadcrumb-item active">Tables</li>
-</ol>
-<div class="card mb-4">
-    <div class="card-body">
-        DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-        <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-        .
-    </div>
-</div>
+<% content_for :heading, 'Articles' %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">Articles</li>
+<% end %>
+
 <div class="card mb-4">
   <div class="card-header">
     <i class="fas fa-table mr-1"></i>
-    DataTable Example
+    List of Articles
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Posted at</th>
+            <th>Published</th>
+            <th></th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Posted at</th>
+            <th>Published</th>
+            <th></th>
           </tr>
         </tfoot>
         <tbody>
+          <% if @articles.empty? %>
           <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
+            <td colspan="5"><em>No record found</em></td>
           </tr>
+          <% end %>
+          <% @articles.each do |article| %>
+          <tr>
+            <td><strong><%= article.title %></strong></td>
+            <td><%= article.author_email %></td>
+            <td><%= l(article.created_at, format: :short) %></td>
+            <td class="justify-content-center">
+              <%= content_tag(:i, '', class: "fas fa-#{article.published? ? 'check' : 'close'}") %>
+            </td>
+          </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

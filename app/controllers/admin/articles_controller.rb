@@ -5,7 +5,7 @@ module Admin
     before_action :find_article, except: %i[index new create]
 
     def index
-      @articles = load_articles
+      @articles = load_articles.recent
     end
 
     def new
