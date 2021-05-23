@@ -17,8 +17,8 @@ namespace :admin do
     fail "-- Empty password is not allowed" if password.blank?
     password_conf = RakeHelper.ask('Re-type password', '')
     fail "-- Password doesn't match." unless password.eql?(password_conf)
-    admin_user = User.where(email: email, role: User::ROLES[:administrator])
-                     .first_or_initialize
+    role = User::ROLES[:administrator]
+    admin_user = User.where(email: email, role: role).first_or_initialize
     admin_user.password = password
     admin_user.password_confirmation = password_conf
     puts '------------------------'
@@ -26,7 +26,7 @@ namespace :admin do
     puts '------------------------'
     puts "  Email : #{email}"
     puts "  Password : #{password}"
-    puts "  Role : admistrator"
+    puts "  Role : #{role}"
     puts '------------------------'
     confirm_to_create = RakeHelper.ask("Are you sure to create this user? (Y/n)", 'n')
     if confirm_to_create.eql?('Y')
@@ -34,7 +34,7 @@ namespace :admin do
         puts "-- Done"
         puts "   -> #{(Time.now.to_f - start).round(5)}s"
       else
-        fail "-- Unable to create administrator: #{admin_user.errors.full_messages.first}"
+        fail "-- Unable to create #{role}: #{admin_user.errors.full_messages.first}"
       end
     else
       puts "-- Cancelled"
