@@ -52,3 +52,4 @@ gem "dotenv-rails", "~> 2.7"
 gem "devise", "~> 4.8"
 gem "friendly_id", "~> 5.4"
 gem "cancancan", "~> 3.2"
+gem "faker", "~> 2.18", require: false
