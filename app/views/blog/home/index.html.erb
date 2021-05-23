@@ -14,13 +14,8 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <%= render partial: 'blog/articles/preview' %>
-        <div class="clearfix">
-          <%= link_to(articles_path, class: 'btn btn-primary float-right') do %>
-            Older Posts &raquo;
-          <% end %>
-        </div>
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <%= articles_list %>
     </div>
   </div>
 </div>

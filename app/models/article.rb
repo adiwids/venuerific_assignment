@@ -20,6 +20,8 @@ class Article < ApplicationRecord
 
   belongs_to :author, class_name: 'User', inverse_of: :articles
 
+  delegate :email, to: :author, prefix: true
+
   default_scope { eager_load(:author) }
   scope :published, -> { where(published: true) }
   scope :recent, ->{ order(created_at: :desc) }
