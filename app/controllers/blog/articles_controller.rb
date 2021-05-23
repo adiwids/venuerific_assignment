@@ -1,7 +1,5 @@
 module Blog
-  class ArticlesController < ApplicationController
-    skip_before_action :authenticate_user!
-
+  class ArticlesController < BaseController
     def index
       @articles = Article.published
     end
