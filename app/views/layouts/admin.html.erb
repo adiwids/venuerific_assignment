@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin Panel</title>
+    <title>Start Bootstrap - Admin</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,6 +14,63 @@
   </head>
 
   <body class="sb-nav-fixed">
-    <%= yield %>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <%= link_to('Start Bootstrap', admin_root_path, class: 'navbar-brand') %>
+      <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item<%= current_page?('/admin') ? ' active': '' %>">
+          <%= link_to('Dashboard', admin_root_path, class: 'nav-link') %>
+        </li>
+        <li class="nav-item">
+          <%= link_to('Blog', root_path, class: 'nav-link',target: :blank) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to('Sign Out', destroy_user_session_path, class: 'nav-link btn btn-danger') %>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <%= link_to(admin_articles_path, class: "nav-link#{current_page?('/admin/articles') ? ' active': ''}") do %>
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-file"></i>
+                </div>
+                Articles
+              <% end %>
+              <%- if can? :manage, User -%>
+              <%= link_to(admin_users_path, class: "nav-link#{current_page?('/admin/users') ? ' active': ''}") do %>
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                Users
+              <% end %>
+              <%- end -%>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            <%= current_user.email %>
+          </div>
+        </nav>
+      </div>
+
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+              <div class="text-muted">Copyright &copy; Start Bootstrap 2021</div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
