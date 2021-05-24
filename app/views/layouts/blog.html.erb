@@ -42,6 +42,18 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <span class="small">
+                  <%= link_to('Register', new_user_registration_path, class: 'text-info') %>
+                </span>
+                <span class="small mr-1 ml-1">or</span>
+                <span class="small">
+                  <%= link_to('Sign In', new_user_session_path, class: 'text-info') %>
+                  if you're already a member?
+                </span>
+              </li>
+            </ul>
             <p class="copyright text-muted">Copyright &copy; Start Bootstrap 2021</p>
           </div>
         </div>
