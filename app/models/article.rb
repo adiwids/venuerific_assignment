@@ -23,6 +23,22 @@ class Article < ApplicationRecord
   delegate :email, to: :author, prefix: true
 
   default_scope { eager_load(:author) }
+
   scope :published, -> { where(published: true) }
+
   scope :recent, ->{ order(created_at: :desc) }
+
+  validates :title, presence: true, length: { minimum: 3 }
+
+  validates :content, presence: true, length: { minimum: 100 }
+
+  def self.permitted_attributes
+    [
+      :title,
+      :content,
+      :meta_keywords,
+      :meta_description,
+      :published
+    ]
+  end
 end

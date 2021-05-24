@@ -1,2 +1,14 @@
-<h1>Admin::Articles#edit</h1>
-<p>Find me in app/views/admin/articles/edit.html.erb</p>
+<% content_for :heading, @article.title %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('Articles', admin_articles_path) %>
+  </li>
+  <li class="breadcrumb-item">
+    <%= link_to(@article.id, admin_article_path(slug: @article.slug)) %>
+  </li>
+  <li class="breadcrumb-item">Edit</li>
+<% end %>
+
+<%= form_with model: [:admin, @article], method: :put do |form| %>
+  <%= render partial: 'admin/articles/form', locals: { form: form } %>
+<% end %>

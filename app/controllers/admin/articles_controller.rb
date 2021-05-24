@@ -61,7 +61,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(Article.permitted_attributes)
+      params.require(:article).permit(*Article.permitted_attributes)
     end
 
     def find_article

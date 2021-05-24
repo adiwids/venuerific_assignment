@@ -2,7 +2,11 @@
 <% content_for :breadcrumb do %>
   <li class="breadcrumb-item">Articles</li>
 <% end %>
-
+<div class="d-flex justify-content-end mb-4">
+  <%= link_to(new_admin_article_path, class: 'btn btn-primary') do %>
+    <i class="fas fa-plus"></i> Create Article
+  <% end %>
+</div>
 <div class="card mb-4">
   <div class="card-header">
     <i class="fas fa-table mr-1"></i>
@@ -40,8 +44,25 @@
             <td><strong><%= article.title %></strong></td>
             <td><%= article.author_email %></td>
             <td><%= l(article.created_at, format: :short) %></td>
-            <td class="justify-content-center">
-              <%= content_tag(:i, '', class: "fas fa-#{article.published? ? 'check' : 'close'}") %>
+            <td>
+              <%= content_tag(:i, '', class: "fas fa-#{article.published? ? 'check' : 'times'}") %>
+            </td>
+            <td>
+              <div class="d-flex justify-content-around align-items-center">
+                <%= link_to(admin_article_path(slug: article.slug)) do %>
+                  <i class="fas fa-info"></i>
+                <% end %>
+                <%= link_to(edit_admin_article_path(slug: article.slug)) do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to(admin_article_path(slug: article.slug),
+                            class: 'text-danger',
+                            data: { remote: true,
+                                    method: :delete,
+                                    confirm: 'Are you sure?' }) do %>
+                  <i class="fas fa-trash"></i>
+                <% end %>
+              </div>
             </td>
           </tr>
           <% end %>
