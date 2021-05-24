@@ -1,0 +1,39 @@
+<% content_for :heading, @article.title %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">
+    <%= link_to('Articles', admin_articles_path) %>
+  </li>
+  <li class="breadcrumb-item"><%= @article.id %></li>
+<% end %>
+<div class="d-flex justify-content-start mb-4">
+  <%= link_to(edit_admin_article_path(slug: @article.slug), class: 'btn btn-link btn-sm') do %>
+    <i class="fas fa-edit"></i> Edit Article
+  <% end %>
+</div>
+<dl class="row">
+  <dt class="col-md-12">Title</dt>
+  <dd class="col-md-12">
+    <span>
+      <%= @article.title %>
+    </span>
+    <%= content_tag(:i,
+                    '',
+                    class: "fas fa-#{@article.published? ? 'check text-success' : 'close text-danger'}",
+                    title: @article.published? ? 'Published' : 'Not Published') %>
+  </dd>
+  <dt class="col-md-12">Content</dt>
+  <dd class="col-md-12"><%= @article.content %></dd>
+  <dt class="col-md-12">Meta Tags</dt>
+  <dd class="col-md-12">
+    <dl class="row">
+      <dt class="col-md-2">
+        <span class="small">Keywords</span>
+      </dt>
+      <dd class="col-md-10"><em><%= @article.meta_keywords.presence || '-' %></em></dd>
+      <dt class="col-md-2">
+        <span class="small">Description</span>
+      </dt>
+      <dd class="col-md-10"><em><%= @article.meta_description.presence || '-' %></em></dd>
+    </dl>
+  </dd>
+</dl>

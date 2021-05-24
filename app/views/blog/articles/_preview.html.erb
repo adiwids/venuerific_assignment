@@ -1,0 +1,11 @@
+<div class="post-preview">
+  <%= link_to(article_path(slug: article.slug)) do %>
+    <h2 class="post-title"><%= article.title %></h2>
+    <h3 class="post-subtitle"><%= article.meta_description %></h3>
+  <% end %>
+  <p class="post-meta">
+    Posted by
+    <a href="#!"><%= article.author_email %></a>
+    on <%= l(article.created_at, format: :short) %>
+  </p>
+</div>

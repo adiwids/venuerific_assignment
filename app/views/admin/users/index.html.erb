@@ -1,0 +1,44 @@
+<% content_for :heading, 'Users' %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item">Users</li>
+<% end %>
+
+<div class="card mb-4">
+  <div class="card-header">
+    <i class="fas fa-table mr-1"></i>
+    List of Users
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Last Signed In</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Email</th>
+            <th>Last Signed In</th>
+            <th></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <% if @users.empty? %>
+          <tr>
+            <td colspan="5"><em>No record found</em></td>
+          </tr>
+          <% end %>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.last_sign_in_at ? l(user.last_sign_in_at, format: :short) : '-' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

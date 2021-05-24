@@ -1,0 +1,16 @@
+<%= render partial: 'blog/articles/preview', collection: articles, as: :article %>
+
+<hr />
+<div class="clearfix">
+  <%- if newer_than -%>
+  <%= link_to(articles_path(newer_than: newer_than.to_s), class: 'btn btn-primary float-left') do %>
+    Newer Posts &laquo;
+  <% end %>
+  <%- end -%>
+
+  <%- if older_than -%>
+  <%= link_to(articles_path(older_than: older_than.to_s), class: 'btn btn-primary float-right') do %>
+    Older Posts &raquo;
+  <% end %>
+  <%- end -%>
+</div>
