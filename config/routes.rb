@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-  end
-  devise_for :users, skip: %i[confirmation unlock]
+  devise_for :users, skip: %i[confirmation unlock passwords]
   root to: 'blog/home#index'
   resources :articles, only: %i[index show],
                        controller: 'blog/articles',
